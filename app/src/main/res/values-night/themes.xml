@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MUSIC_FOLDER_PLAYER" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimaryDark">@color/pink</item>
+        <!--        <item name="colorAccent">@color/color_accent</item>-->
+        <item name="android:statusBarColor">@color/pink</item>
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    </style>
+</resources>
