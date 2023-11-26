@@ -19,16 +19,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:ellipsize="marquee"
-        android:padding="16dp"
+        android:padding="12dp"
         android:singleLine="true"
         android:text="Title of the song"
         android:textColor="@color/white"
         android:layout_above="@id/controls"
         android:textSize="20dp" />
+    <TextView
+        android:id="@+id/song_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="album"
+        android:layout_above="@+id/song_path"
+        android:ellipsize="marquee"
+        android:layout_marginStart="20dp"
+        android:paddingHorizontal="12dp"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        />
+
+    <TextView
+        android:id="@+id/song_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="path"
+        android:layout_below="@+id/song_title"
+
+        android:ellipsize="marquee"
+        android:layout_marginStart="20dp"
+        android:paddingHorizontal="12dp"
+        android:textSize="16dp"
+        />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/music_icon_big"

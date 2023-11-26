@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MusicPlayerActivity extends AppCompatActivity {
 
-    TextView titleTv,currentTimeTv,totalTimeTv;
+    TextView titleTv,currentTimeTv,totalTimeTv,song_path,song_album;
     SeekBar seekBar;
     ImageView pausePlay,nextBtn,previousBtn,musicIcon,backBtn;
     ArrayList<AudioModel> songsList;
@@ -42,6 +43,8 @@ public class MusicPlayerActivity extends AppCompatActivity {
         previousBtn = findViewById(R.id.previous);
         musicIcon = findViewById(R.id.music_icon_big);
         backBtn = findViewById(R.id.back);
+        song_path = findViewById(R.id.song_path);
+        song_album = findViewById(R.id.song_album);
 
         titleTv.setSelected(true);
 
@@ -71,6 +74,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
                     }else{
                         pausePlay.setImageResource(R.drawable.baseline_play_circle_24);
                         musicIcon.setRotation(0);
+
                     }
 
                 }
@@ -102,9 +106,9 @@ public class MusicPlayerActivity extends AppCompatActivity {
         currentSong = songsList.get(MyMediaPlayer.currentIndex);
 
         titleTv.setText(currentSong.getTitle());
-
+        song_album.setText(currentSong.album);
+        song_path.setText(currentSong.getPath());
         totalTimeTv.setText(convertToMMSS(currentSong.getDuration()));
-
         pausePlay.setOnClickListener(v-> pausePlay());
         nextBtn.setOnClickListener(v-> playNextSong());
         previousBtn.setOnClickListener(v-> playPreviousSong());
@@ -138,6 +142,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             mediaPlayer.setDataSource(currentSong.getPath());
             mediaPlayer.prepare();
             mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(arg0 -> onCompletion(arg0));
             seekBar.setProgress(0);
             seekBar.setMax(mediaPlayer.getDuration());
         } catch (IOException e) {
@@ -146,6 +151,12 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
 
     }
+
+    public void onCompletion(MediaPlayer arg0)
+    {
+        playNextSong();
+    }
+
     private void playNextSong(){
 
         if(MyMediaPlayer.currentIndex== songsList.size()-1)
